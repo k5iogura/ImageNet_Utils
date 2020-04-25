@@ -5,11 +5,13 @@ import os
 import _init_paths
 import imagedownloader
 import pref_utils
+from pdb import set_trace
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description='Help the user to download, crop, and handle images from ImageNet')
     p.add_argument('--wnid', nargs='+', help='ImageNet Wnid. E.g. : n02710324')
     p.add_argument('--wnid_list', type=str, default=None)
+    p.add_argument('--cat',action="store_true",default=0)
     p.add_argument('-n','--num_images', type=int, default=100)
     p.add_argument('--downloadImages', help='Should download images', action='store_true', default=False)
     p.add_argument('--downloadOriginalImages', help='Should download original images', action='store_true', default=False)
@@ -34,11 +36,34 @@ if __name__ == '__main__':
         username = userInfo[0]
         accessKey = userInfo[1]
 
+    if args.cat:
+        needcat=1000
+        imgAcat= 900
+        filename = 'imagenet.labels.flickr'+str(imgAcat)+'.list'
+        with open(filename,"w") as flickr:
+            for iid in args.wnid:
+                try:
+                    ilist = downloader.getImageURLsOfWnid(iid)
+                except:
+                    continue
+                ilist = [ url for url in ilist if '.flickr.com' in url]
+                sys.stdout.write("{:10s}\t{:6d} images".format(iid,len(ilist)))
+                if len(ilist)>=imgAcat:
+                    sys.stdout.write("\t* {}".format(needcat))
+                    flickr.write(iid+"\n")
+                    flickr.flush()
+                    needcat-=1
+                sys.stdout.write("\n")
+                if needcat<=0:break
+        sys.exit(0)
+
     if args.downloadImages is True:
-        for id in args.wnid:
-            list = downloader.getImageURLsOfWnid(id)
-            gets = downloader.downloadImagesByURLs(id, list, args.num_images)
-            print("-"*30,"\n","- completed",gets,"images\n","-"*30)
+        for iid in args.wnid:
+            ilist = downloader.getImageURLsOfWnid(iid)
+            gets = downloader.downloadImagesByURLs(iid, ilist, args.num_images)
+            print("-"*30)
+            print("- completed {} / {}".format(gets,len(ilist)))
+            print("-"*30)
 
     if args.downloadBoundingBox is True:
         for id in args.wnid:
