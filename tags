@@ -1,0 +1,153 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BBoxHelper	bbox_helper.py	/^class BBoxHelper:$/;"	c
+ET	bbox_helper.py	/^import xml.etree.ElementTree as ET$/;"	i
+Image	bbox_helper.py	/^import Image$/;"	i
+Image	labelcreator.py	/^import Image$/;"	i
+ImageNetDownloader	libs/imagedownloader.py	/^class ImageNetDownloader:$/;"	c
+KEY	detection_eval_tools/reorder_meta.py	/^    KEY = 'synsets'$/;"	v
+OUT_ANN_DIR	detection_eval_tools/gt_det.py	/^    OUT_ANN_DIR = os.path.join(args.dst, 'annotations')$/;"	v
+OUT_ID_LIST	detection_eval_tools/gt_det.py	/^    OUT_ID_LIST = os.path.join(args.dst, 'ids.txt')$/;"	v
+OUT_IMG_DIR	detection_eval_tools/gt_det.py	/^    OUT_IMG_DIR = os.path.join(args.dst, 'images')$/;"	v
+OUT_META_DATA	detection_eval_tools/gt_det.py	/^    OUT_META_DATA = os.path.join(args.dst, 'meta.mat')$/;"	v
+__init__	bbox_helper.py	/^    def __init__(self, annotation_file, image_path=None):$/;"	m	class:BBoxHelper
+__init__	libs/imagedownloader.py	/^    def __init__(self):$/;"	m	class:ImageNetDownloader
+_findMaxLable	detection_eval_tools/gt_det.py	/^def _findMaxLable(labelNameMap):$/;"	f
+_findWnidsInAnnotationFolder	detection_eval_tools/gt_det.py	/^def _findWnidsInAnnotationFolder(ids):$/;"	f
+_getMatchedIds	detection_eval_tools/gt_det.py	/^def _getMatchedIds(*paths):$/;"	f
+_init_paths	downloadutils.py	/^import _init_paths$/;"	i
+_matlabArr	detection_eval_tools/gt_det.py	/^def _matlabArr(count):$/;"	f
+_mkdir	detection_eval_tools/gt_det.py	/^def _mkdir(path, filePath=False):$/;"	f
+_procPath	detection_eval_tools/gt_det.py	/^def _procPath(args):$/;"	f
+_saveArr	detection_eval_tools/gt_det.py	/^def _saveArr(outputFileName, arr):$/;"	f
+_saveImgIdList	detection_eval_tools/gt_det.py	/^def _saveImgIdList(outputFileName, ids):$/;"	f
+_saveMetaData	detection_eval_tools/gt_det.py	/^def _saveMetaData(outputFileName, imagenetStructureFile, labelNameMap):$/;"	f
+_toLabelAndName	detection_eval_tools/gt_det.py	/^def _toLabelAndName(labelNameMap):$/;"	f
+accessKey	downloadutils.py	/^            accessKey = raw_input('Enter your accessKey : ')$/;"	v
+accessKey	downloadutils.py	/^        accessKey = userInfo[1]$/;"	v
+accessKey	downloadutils.py	/^    accessKey = None$/;"	v
+addImg	boxesCvtPascaltoDlib.py	/^def addImg(imgs, xmlIn, imgPath):$/;"	f
+add_path	_init_paths.py	/^def add_path(path):$/;"	f
+allAnnotationFiles	bbox_helper.py	/^        allAnnotationFiles = scanAnnotationFolder(boudingbox_xml_dir)$/;"	v
+anns	detection_eval_tools/gt_det.py	/^    anns = bbox_helper.scanAnnotationFolder(paths[0])$/;"	v
+argparse	bbox_helper.py	/^import argparse$/;"	i
+argparse	boxesCvtPascaltoDlib.py	/^import argparse$/;"	i
+argparse	detection_eval_tools/gt_det.py	/^import argparse$/;"	i
+argparse	detection_eval_tools/reorder_meta.py	/^import argparse$/;"	i
+argparse	downloadutils.py	/^import argparse$/;"	i
+argparse	labelcreator.py	/^import argparse$/;"	i
+args	bbox_helper.py	/^    args = p.parse_args()$/;"	v
+args	boxesCvtPascaltoDlib.py	/^    args = p.parse_args()$/;"	v
+args	detection_eval_tools/gt_det.py	/^    args = p.parse_args()$/;"	v
+args	detection_eval_tools/reorder_meta.py	/^    args = p.parse_args()$/;"	v
+args	downloadutils.py	/^    args = p.parse_args()$/;"	v
+args	labelcreator.py	/^    args = p.parse_args()$/;"	v
+autolableAllDir	labelcreator.py	/^def autolableAllDir(path='.'):$/;"	f
+bAutoLabelAllDir	labelcreator.py	/^        bAutoLabelAllDir = raw_input("Should label all dirs? Y or N :")$/;"	v
+bbox_helper	detection_eval_tools/gt_det.py	/^import bbox_helper$/;"	i
+boudingbox_xml_dir	bbox_helper.py	/^    boudingbox_xml_dir = args.bxmldir$/;"	v
+boundingbox_xml_file	bbox_helper.py	/^    boundingbox_xml_file = args.bxmlpath$/;"	v
+copyAnnotations	detection_eval_tools/gt_det.py	/^def copyAnnotations(annotationFiles, dstPath):$/;"	f
+copyImagesByAnnFiles	detection_eval_tools/gt_det.py	/^def copyImagesByAnnFiles(annotationFiles, imagePath, dstPath):$/;"	f
+downloadBBox	libs/imagedownloader.py	/^    def downloadBBox(self, wnid):$/;"	m	class:ImageNetDownloader
+downloadImagesByURLs	libs/imagedownloader.py	/^    def downloadImagesByURLs(self, wnid, imageUrls, num_images):$/;"	m	class:ImageNetDownloader
+downloadOriginalImages	libs/imagedownloader.py	/^    def downloadOriginalImages(self, wnid, username, accesskey):$/;"	m	class:ImageNetDownloader
+download_file	libs/imagedownloader.py	/^    def download_file(self, url, desc=None, renamed_file=None):$/;"	m	class:ImageNetDownloader
+downloader	downloadutils.py	/^    downloader = imagedownloader.ImageNetDownloader()$/;"	v
+dst	detection_eval_tools/reorder_meta.py	/^    dst = []$/;"	v
+dst	detection_eval_tools/reorder_meta.py	/^    dst = np.array(dst, dtype=srcSynsets.dtype)$/;"	v
+et	boxesCvtPascaltoDlib.py	/^import xml.etree.ElementTree as et$/;"	i
+et	detection_eval_tools/gt_det.py	/^    import xml.etree.ElementTree as et$/;"	i
+etree	bbox_helper.py	/^import xml.etree.ElementTree as ET$/;"	i
+etree	boxesCvtPascaltoDlib.py	/^import xml.etree.ElementTree as et$/;"	i
+etree	detection_eval_tools/gt_det.py	/^    import xml.etree.ElementTree as et$/;"	i
+extractTarfile	libs/imagedownloader.py	/^    def extractTarfile(self, filename):$/;"	m	class:ImageNetDownloader
+findImagePath	bbox_helper.py	/^    def findImagePath(self, search_folder='.'):$/;"	m	class:BBoxHelper
+findWnidsInAnnotationFolder	detection_eval_tools/gt_det.py	/^def findWnidsInAnnotationFolder(annotationPath, imagePath):$/;"	f
+getImageURLsOfWnid	libs/imagedownloader.py	/^    def getImageURLsOfWnid(self, wnid):$/;"	m	class:ImageNetDownloader
+getWnid	bbox_helper.py	/^        def getWnid(self):$/;"	f	function:BBoxHelper.get_BoudingBoxs
+get_BoudingBoxs	bbox_helper.py	/^    def get_BoudingBoxs(self):$/;"	m	class:BBoxHelper
+help	detection_eval_tools/reorder_meta.py	/^                   help='Pad empty item if WNID is not found')$/;"	v
+ids	detection_eval_tools/gt_det.py	/^    ids = _getMatchedIds(OUT_ANN_DIR, OUT_IMG_DIR)$/;"	v
+imagedownloader	downloadutils.py	/^import imagedownloader$/;"	i
+imgExt	boxesCvtPascaltoDlib.py	/^    imgExt = '.jpg'$/;"	v
+imgs	boxesCvtPascaltoDlib.py	/^    imgs = rootOut.find('images')$/;"	v
+initRootOut	boxesCvtPascaltoDlib.py	/^def initRootOut():$/;"	f
+isImageValid	labelcreator.py	/^def isImageValid(imagePath):$/;"	f
+item	detection_eval_tools/reorder_meta.py	/^                    item = (w, '', '')$/;"	v
+item	detection_eval_tools/reorder_meta.py	/^            item = next((x for x in srcSynsets if w == x['WNID']), None)$/;"	v
+json	libs/pref_utils.py	/^import json$/;"	i
+labelImagesInDir	labelcreator.py	/^def labelImagesInDir(label, folderPath):$/;"	f
+list	downloadutils.py	/^            list = downloader.getImageURLsOfWnid(id)$/;"	v
+logging	labelcreator.py	/^import logging$/;"	i
+mkWnidDir	libs/imagedownloader.py	/^    def mkWnidDir(self, wnid):$/;"	m	class:ImageNetDownloader
+np	detection_eval_tools/gt_det.py	/^import numpy as np$/;"	i
+np	detection_eval_tools/reorder_meta.py	/^import numpy as np$/;"	i
+os	_init_paths.py	/^import os.path as osp$/;"	i
+os	bbox_helper.py	/^import os$/;"	i
+os	boxesCvtPascaltoDlib.py	/^import os$/;"	i
+os	detection_eval_tools/gt_det.py	/^import os$/;"	i
+os	downloadutils.py	/^import os$/;"	i
+os	labelcreator.py	/^import os$/;"	i
+os	libs/imagedownloader.py	/^import os$/;"	i
+os	libs/pref_utils.py	/^import os$/;"	i
+osp	_init_paths.py	/^import os.path as osp$/;"	i
+p	bbox_helper.py	/^    p = argparse.ArgumentParser(description='Help the user to download, crop, and handle images from ImageNet')$/;"	v
+p	boxesCvtPascaltoDlib.py	/^    p = argparse.ArgumentParser(description='Convert Pascal format to Dlib format')$/;"	v
+p	detection_eval_tools/gt_det.py	/^                                for ILSVC detection results evaluation')$/;"	v
+p	detection_eval_tools/reorder_meta.py	/^    p = argparse.ArgumentParser(description='Reorder meta data array.')$/;"	v
+p	downloadutils.py	/^    p = argparse.ArgumentParser(description='Help the user to download, crop, and handle images from ImageNet')$/;"	v
+p	labelcreator.py	/^    p = argparse.ArgumentParser(description='Create a label to train.txt, val.txt, or test.txt')$/;"	v
+paths	detection_eval_tools/gt_det.py	/^    paths = _procPath(args.path)$/;"	v
+pickle	detection_eval_tools/gt_det.py	/^    import pickle$/;"	i
+pref_utils	downloadutils.py	/^import pref_utils$/;"	i
+readUserInfo	libs/pref_utils.py	/^def readUserInfo():$/;"	f
+rootIn	boxesCvtPascaltoDlib.py	/^            rootIn = et.parse(os.path.join(args.bboxes, f)).getroot()$/;"	v
+rootOut	boxesCvtPascaltoDlib.py	/^    rootOut = initRootOut()$/;"	v
+saveAsBoudingBoxImg	bbox_helper.py	/^def saveAsBoudingBoxImg(xmlfile):$/;"	f
+saveBoundBoxImage	bbox_helper.py	/^    def saveBoundBoxImage(self, imgPath=None, outputFolder=None):$/;"	m	class:BBoxHelper
+saveImgIdList	detection_eval_tools/gt_det.py	/^def saveImgIdList(outputFileName, annotationPath, imagePath):$/;"	f
+saveMetaData	detection_eval_tools/gt_det.py	/^def saveMetaData(outputFileName, imagenetStructureFile, labelNameMap):$/;"	f
+saveMetaData	detection_eval_tools/gt_det.py	/^def saveMetaData(outputFileName, labelNameMap):$/;"	f
+saveUserInfo	libs/pref_utils.py	/^def saveUserInfo(username, accesskey):$/;"	f
+scanAllImages	labelcreator.py	/^def scanAllImages(folderPath):$/;"	f
+scanAnnotationFolder	bbox_helper.py	/^def scanAnnotationFolder(annotationFolderPath):$/;"	f
+scipy	detection_eval_tools/gt_det.py	/^import scipy.io as sio$/;"	i
+scipy	detection_eval_tools/reorder_meta.py	/^import scipy.io as sio$/;"	i
+set_trace	libs/imagedownloader.py	/^from pdb import set_trace$/;"	i
+shouldSaveBoundingBoxImg	bbox_helper.py	/^    shouldSaveBoundingBoxImg = args.save_boundingbox$/;"	v
+shutil	detection_eval_tools/gt_det.py	/^import shutil$/;"	i
+sio	detection_eval_tools/gt_det.py	/^import scipy.io as sio$/;"	i
+sio	detection_eval_tools/reorder_meta.py	/^import scipy.io as sio$/;"	i
+src	detection_eval_tools/reorder_meta.py	/^    src = sio.loadmat(args.src, squeeze_me=True)$/;"	v
+srcSynsets	detection_eval_tools/reorder_meta.py	/^    srcSynsets = src[KEY]$/;"	v
+sys	_init_paths.py	/^import sys$/;"	i
+sys	bbox_helper.py	/^import sys$/;"	i
+sys	detection_eval_tools/gt_det.py	/^import sys$/;"	i
+sys	downloadutils.py	/^import sys$/;"	i
+sys	labelcreator.py	/^import sys$/;"	i
+sys	libs/imagedownloader.py	/^import sys$/;"	i
+tarfile	libs/imagedownloader.py	/^import tarfile$/;"	i
+this_dir	_init_paths.py	/^this_dir = osp.dirname(__file__)$/;"	v
+time	libs/imagedownloader.py	/^import time$/;"	i
+tree	boxesCvtPascaltoDlib.py	/^    tree = et.ElementTree(rootOut)$/;"	v
+urllib	libs/imagedownloader.py	/^    import urllib$/;"	i
+urllib	libs/imagedownloader.py	/^    import urllib.parse as urlparse$/;"	i
+urllib	libs/imagedownloader.py	/^    import urllib.request as urllib2$/;"	i
+urllib2	libs/imagedownloader.py	/^    import urllib.request as urllib2$/;"	i
+urllib2	libs/imagedownloader.py	/^    import urllib2$/;"	i
+urlparse	libs/imagedownloader.py	/^    import urllib.parse as urlparse$/;"	i
+urlparse	libs/imagedownloader.py	/^    import urlparse$/;"	i
+userInfo	downloadutils.py	/^    userInfo = pref_utils.readUserInfo()$/;"	v
+username	downloadutils.py	/^            username = raw_input('Enter your username : ')$/;"	v
+username	downloadutils.py	/^        username = userInfo[0]$/;"	v
+username	downloadutils.py	/^    username = None$/;"	v
+w	detection_eval_tools/reorder_meta.py	/^            w = w.strip()$/;"	v
+xml	bbox_helper.py	/^import xml.etree.ElementTree as ET$/;"	i
+xml	boxesCvtPascaltoDlib.py	/^import xml.etree.ElementTree as et$/;"	i
+xml	detection_eval_tools/gt_det.py	/^    import xml.etree.ElementTree as et$/;"	i
+zipfile	bbox_helper.py	/^import zipfile$/;"	i
