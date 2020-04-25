@@ -8,10 +8,17 @@ Grap the source
 ### Requirements
 If you would like to download the original images, you should signup [ImageNet](http://www.image-net.org/)
 
+### Check images via category:  
+Check number of images in category list.  
+After run see imagenet.labels.flickr900.list.  
+
+`$ ./downloadutils.py -cat --wnid_list hoge.list`  
+
 ### Usage - Download images:
 Get the urls of wnid and download all of them. E.g., download [Dog images from ImageNet](http://www.image-net.org/synset?wnid=n02084071) and save images to ./n02084071/url_images/*.jpg
 
-`$ ./downloadutils.py --downloadImages --wnid n02084071`
+`$ ./downloadutils.py --downloadImages --wnid n02084071`  
+`$ ./downloadutils.py --downloadImages --wnid_list imagenet.labels.flickr900.list`  
 
 Download all original images. E.g., download the original images about [person](http://www.image-net.org/synset?wnid=n00007846) and save to ./n00007846/n00007846_original_images/*.JPEG
 
