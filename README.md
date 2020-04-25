@@ -10,7 +10,7 @@ If you would like to download the original images, you should signup [ImageNet](
 
 ### Check images via category:  
 Check number of images in category list.  
-After run see imagenet.labels.flickr900.list.  
+After run see imagenet.labels.flickr900.list which include categories having over 900 images.  
 
 `$ ./downloadutils.py -cat --wnid_list hoge.list`  
 
