@@ -1,5 +1,9 @@
 # ImageNet-Utils
-Utils to help download images, crop bounding box, GUI tool to annotate image in XML file etc.
+Utils to help download images, crop bounding box, GUI tool to annotate image in XML file etc.  
+
+**Dwonload Flickr images which includes .flickr.com as url only**  
+url list provided by ImageNet.org includes fake url such as north korea redirections.  
+flickr url is safety :0  
 
 Grap the source
 
@@ -8,10 +12,17 @@ Grap the source
 ### Requirements
 If you would like to download the original images, you should signup [ImageNet](http://www.image-net.org/)
 
+### Check images via category:  
+Check number of images in category list.  
+After run see imagenet.labels.flickr900.list which include categories having over 900 images.  
+
+`$ ./downloadutils.py -cat --wnid_list hoge.list`  
+
 ### Usage - Download images:
 Get the urls of wnid and download all of them. E.g., download [Dog images from ImageNet](http://www.image-net.org/synset?wnid=n02084071) and save images to ./n02084071/url_images/*.jpg
 
-`$ ./downloadutils.py --downloadImages --wnid n02084071`
+`$ ./downloadutils.py --downloadImages --wnid n02084071`  
+`$ ./downloadutils.py --downloadImages --wnid_list imagenet.labels.flickr900.list`  
 
 Download all original images. E.g., download the original images about [person](http://www.image-net.org/synset?wnid=n00007846) and save to ./n00007846/n00007846_original_images/*.JPEG
 
