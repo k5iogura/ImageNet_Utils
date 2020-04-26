@@ -2,6 +2,8 @@
 Utils to help download images, crop bounding box, GUI tool to annotate image in XML file etc.  
 
 **Dwonload Flickr images which includes .flickr.com as url only**  
+url list provided by ImageNet.org includes fake url such as north korea redirections.  
+flickr url is safety :0  
 
 Grap the source
 
