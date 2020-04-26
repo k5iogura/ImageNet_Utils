@@ -25,7 +25,7 @@ if __name__ == '__main__':
         with open(args.wnid_list) as f:
             args.wnid = [ wnid.strip() for wnid in f ]
     if args.wnid is None:
-        print 'No wnid'
+        print('No wnid')
         sys.exit()
 
     downloader = imagedownloader.ImageNetDownloader()
@@ -45,6 +45,7 @@ if __name__ == '__main__':
                 try:
                     ilist = downloader.getImageURLsOfWnid(iid)
                 except:
+                    print("retry getting url list")
                     continue
                 ilist = [ url for url in ilist if '.flickr.com' in url]
                 sys.stdout.write("{:10s}\t{:6d} images".format(iid,len(ilist)))
@@ -62,7 +63,7 @@ if __name__ == '__main__':
             ilist = downloader.getImageURLsOfWnid(iid)
             gets = downloader.downloadImagesByURLs(iid, ilist, args.num_images)
             print("-"*30)
-            print("- completed {} / {}".format(gets,len(ilist)))
+            print("- completed {} {} / {}".format(iid, gets, len(ilist)))
             print("-"*30)
 
     if args.downloadBoundingBox is True:
@@ -79,7 +80,7 @@ if __name__ == '__main__':
                 pref_utils.saveUserInfo(username, accessKey)
 
         if username is None or accessKey is None:
-            print 'need username and accessKey to download original images'
+            print('need username and accessKey to download original images')
         else:
             for id in args.wnid:
                 downloader.downloadOriginalImages(id, username, accessKey)

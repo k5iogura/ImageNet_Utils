@@ -33,6 +33,11 @@ class ImageNetDownloader:
         file_size_dl = 0
         block_sz = 8192
         while True:
+            filename = filename.replace('.JPG','.jpg')
+            if os.path.exists(filename):
+                file_size_dl = 3*block_sz # set as dummy
+                sys.stdout.write("skipped {} already existed".format(filename))
+                break
             meta = u.info()
             meta_func = meta.getheaders if hasattr(meta, 'getheaders') else meta.get_all
             meta_length = meta_func("Content-Length")
@@ -48,7 +53,6 @@ class ImageNetDownloader:
             if meta_length:
                 file_size = int(meta_length[0])
 
-            filename = filename.replace('.JPG','.jpg')
             f = open(filename, 'wb')
             while True:
                 buffer = u.read(block_sz)
@@ -64,7 +68,7 @@ class ImageNetDownloader:
                 status += chr(13)
             if file_size_dl >= block_sz:sys.stdout.write("Downloading: {}".format(url))
             break
-        if os.path.exists(filename) and file_size_dl < block_sz:
+        if os.path.exists(filename) and file_size_dl < 3*block_sz:
             os.remove(filename)
             filename = None
         else:
@@ -135,8 +139,7 @@ class ImageNetDownloader:
                 filename = self.download_file(url, wnid_urlimages_dir)
                 if filename is None:ok = 0
             except Exception, error:
-                print 'Fail to download : ' + url
-                print str(error)
+                print('Fail to download : ' + url +' '+ str(error))
                 ok = 0
             if ok > 0:gets+=1
             if gets >= num_images:break
