@@ -1,6 +1,7 @@
 # ImageNet-Utils
 Utils to help download images, crop bounding box, GUI tool to annotate image in XML file etc.  
-**To Dwonload Flickr images only**  
+
+**To Dwonload Flickr images only** Support .flickr.com  
 
 Grap the source
 
