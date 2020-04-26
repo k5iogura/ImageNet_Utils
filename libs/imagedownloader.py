@@ -17,6 +17,7 @@ class ImageNetDownloader:
         self.host = 'http://www.image-net.org'
 
     def download_file(self, url, desc=None, renamed_file=None):
+        new = False
         u = urllib2.urlopen(url)
 
         scheme, netloc, path, query, fragment = urlparse.urlsplit(url)
@@ -58,7 +59,8 @@ class ImageNetDownloader:
                 buffer = u.read(block_sz)
                 if not buffer:
                     break
-                if file_size_dl == 0 and len(buffer) < block_sz:break
+                if file_size_dl == 0 and len(buffer) < block_sz:
+                    break
                 file_size_dl += len(buffer)
                 f.write(buffer)
 
@@ -66,7 +68,9 @@ class ImageNetDownloader:
                 if file_size:
                     status += "   [{0:6.2f}%]".format(file_size_dl * 100 / file_size)
                 status += chr(13)
-            if file_size_dl >= block_sz:sys.stdout.write("Downloading: {}".format(url))
+            if file_size_dl >= block_sz:
+                sys.stdout.write("Downloading: {}".format(url))
+                new = True
             break
         if os.path.exists(filename) and file_size_dl < 3*block_sz:
             os.remove(filename)
@@ -75,7 +79,7 @@ class ImageNetDownloader:
             sys.stdout.write(" Bytes: {}".format(file_size_dl))
         sys.stdout.write("\n")
 
-        return filename
+        return filename, new
 
     def extractTarfile(self, filename):
         tar = tarfile.open(filename)
@@ -121,7 +125,6 @@ class ImageNetDownloader:
         return os.path.abspath(iname)
 
     def downloadImagesByURLs(self, wnid, imageUrls, num_images):
-        gets = 0
         print("*"*30)
         print("**  START {}".format(wnid))
         print("*"*30)
@@ -132,21 +135,22 @@ class ImageNetDownloader:
         if not os.path.exists(wnid_urlimages_dir):
             os.mkdir(wnid_urlimages_dir)
 
-        files = [ i for i in os.listdir(wnid_urlimages_dir) ]
-        if len(files) >= num_images: return len(files)
+        ready_fileN = len( [ i for i in os.listdir(wnid_urlimages_dir) ] )
+        if ready_fileN >= num_images: return ready_fileN
 
         imageUrlsFlickr = [ url for url in imageUrls if '.flickr.com' in url ]
+        gets = 0
+        new  = False
         for urlNo, url in enumerate(imageUrlsFlickr):
-            #if '.flickr.com' not in url: continue
+            if urlNo+1 <= ready_fileN:
+                gets += 1
+                continue
             sys.stdout.write("{} {}/{}/{} ".format(wnid, gets, urlNo, len(imageUrlsFlickr)))
-            ok = 1
             try:
-                filename = self.download_file(url, wnid_urlimages_dir)
-                if filename is None:ok = 0
+                filename, new = self.download_file(url, wnid_urlimages_dir)
             except Exception, error:
                 print('Fail to download : ' + url +' '+ str(error))
-                ok = 0
-            if ok > 0:gets+=1
+            if new: gets+=1
             if gets >= num_images:break
         return gets
 
