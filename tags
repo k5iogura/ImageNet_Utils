@@ -66,14 +66,20 @@ etree	bbox_helper.py	/^import xml.etree.ElementTree as ET$/;"	i
 etree	boxesCvtPascaltoDlib.py	/^import xml.etree.ElementTree as et$/;"	i
 etree	detection_eval_tools/gt_det.py	/^    import xml.etree.ElementTree as et$/;"	i
 extractTarfile	libs/imagedownloader.py	/^    def extractTarfile(self, filename):$/;"	m	class:ImageNetDownloader
+filename	downloadutils.py	/^        filename = 'imagenet.labels.flickr'+str(imgAcat)+'.list'$/;"	v
 findImagePath	bbox_helper.py	/^    def findImagePath(self, search_folder='.'):$/;"	m	class:BBoxHelper
 findWnidsInAnnotationFolder	detection_eval_tools/gt_det.py	/^def findWnidsInAnnotationFolder(annotationPath, imagePath):$/;"	f
 getImageURLsOfWnid	libs/imagedownloader.py	/^    def getImageURLsOfWnid(self, wnid):$/;"	m	class:ImageNetDownloader
 getWnid	bbox_helper.py	/^        def getWnid(self):$/;"	f	function:BBoxHelper.get_BoudingBoxs
 get_BoudingBoxs	bbox_helper.py	/^    def get_BoudingBoxs(self):$/;"	m	class:BBoxHelper
+gets	downloadutils.py	/^            gets = downloader.downloadImagesByURLs(iid, ilist, args.num_images)$/;"	v
 help	detection_eval_tools/reorder_meta.py	/^                   help='Pad empty item if WNID is not found')$/;"	v
 ids	detection_eval_tools/gt_det.py	/^    ids = _getMatchedIds(OUT_ANN_DIR, OUT_IMG_DIR)$/;"	v
+ilist	downloadutils.py	/^                    ilist = downloader.getImageURLsOfWnid(iid)$/;"	v
+ilist	downloadutils.py	/^                ilist = [ url for url in ilist if '.flickr.com' in url]$/;"	v
+ilist	downloadutils.py	/^            ilist = downloader.getImageURLsOfWnid(iid)$/;"	v
 imagedownloader	downloadutils.py	/^import imagedownloader$/;"	i
+imgAcat	downloadutils.py	/^        imgAcat= 900$/;"	v
 imgExt	boxesCvtPascaltoDlib.py	/^    imgExt = '.jpg'$/;"	v
 imgs	boxesCvtPascaltoDlib.py	/^    imgs = rootOut.find('images')$/;"	v
 initRootOut	boxesCvtPascaltoDlib.py	/^def initRootOut():$/;"	f
@@ -82,9 +88,10 @@ item	detection_eval_tools/reorder_meta.py	/^                    item = (w, '', '
 item	detection_eval_tools/reorder_meta.py	/^            item = next((x for x in srcSynsets if w == x['WNID']), None)$/;"	v
 json	libs/pref_utils.py	/^import json$/;"	i
 labelImagesInDir	labelcreator.py	/^def labelImagesInDir(label, folderPath):$/;"	f
-list	downloadutils.py	/^            list = downloader.getImageURLsOfWnid(id)$/;"	v
 logging	labelcreator.py	/^import logging$/;"	i
-mkWnidDir	libs/imagedownloader.py	/^    def mkWnidDir(self, wnid):$/;"	m	class:ImageNetDownloader
+mkWnidDir	libs/imagedownloader.py	/^    def mkWnidDir(self):$/;"	m	class:ImageNetDownloader
+mkWnidDirOrg	libs/imagedownloader.py	/^    def mkWnidDirOrg(self, wnid):$/;"	m	class:ImageNetDownloader
+needcat	downloadutils.py	/^        needcat=1000$/;"	v
 np	detection_eval_tools/gt_det.py	/^import numpy as np$/;"	i
 np	detection_eval_tools/reorder_meta.py	/^import numpy as np$/;"	i
 os	_init_paths.py	/^import os.path as osp$/;"	i
@@ -118,6 +125,7 @@ scanAllImages	labelcreator.py	/^def scanAllImages(folderPath):$/;"	f
 scanAnnotationFolder	bbox_helper.py	/^def scanAnnotationFolder(annotationFolderPath):$/;"	f
 scipy	detection_eval_tools/gt_det.py	/^import scipy.io as sio$/;"	i
 scipy	detection_eval_tools/reorder_meta.py	/^import scipy.io as sio$/;"	i
+set_trace	downloadutils.py	/^from pdb import set_trace$/;"	i
 set_trace	libs/imagedownloader.py	/^from pdb import set_trace$/;"	i
 shouldSaveBoundingBoxImg	bbox_helper.py	/^    shouldSaveBoundingBoxImg = args.save_boundingbox$/;"	v
 shutil	detection_eval_tools/gt_det.py	/^import shutil$/;"	i
