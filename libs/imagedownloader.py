@@ -132,8 +132,13 @@ class ImageNetDownloader:
         if not os.path.exists(wnid_urlimages_dir):
             os.mkdir(wnid_urlimages_dir)
 
-        for url in imageUrls:
-            if '.flickr.com' not in url: continue
+        files = [ i for i in os.listdir(wnid_urlimages_dir) ]
+        if len(files) >= num_images: return len(files)
+
+        imageUrlsFlickr = [ url for url in imageUrls if '.flickr.com' in url ]
+        for urlNo, url in enumerate(imageUrlsFlickr):
+            #if '.flickr.com' not in url: continue
+            sys.stdout.write("{} {}/{}/{} ".format(wnid, gets, urlNo, len(imageUrlsFlickr)))
             ok = 1
             try:
                 filename = self.download_file(url, wnid_urlimages_dir)
