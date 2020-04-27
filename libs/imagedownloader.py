@@ -36,7 +36,7 @@ class ImageNetDownloader:
         while True:
             filename = filename.replace('.JPG','.jpg')
             if os.path.exists(filename):
-                file_size_dl = 3*block_sz # set as dummy
+                file_size_dl = os.path.getsize(filename)
                 sys.stdout.write("skipped {} already existed".format(filename))
                 break
             meta = u.info()
@@ -125,11 +125,9 @@ class ImageNetDownloader:
         return os.path.abspath(iname)
 
     def downloadImagesByURLs(self, wnid, imageUrls, num_images):
-        sys.stdout.flush()
         print("*"*30)
         print("**  START {}".format(wnid))
         print("*"*30)
-        sys.stdout.flush()
         # save to the dir e.g: n005555_urlimages/
         wnid_urlimages_dir = os.path.join(self.mkWnidDir(), str(wnid))
         # wnid_urlimages_dir = os.path.join(self.mkWnidDir(wnid), str(wnid) + '_urlimages')
@@ -146,14 +144,15 @@ class ImageNetDownloader:
             if urlNo+1 <= ready_fileN:
                 gets += 1
                 continue
-            sys.stdout.write("{} {}/{}/{} ".format(wnid, gets, urlNo, len(imageUrls)))
+            sys.stdout.write("{} {:4d}/{:4d}/{:4d} ".format(wnid, gets, urlNo, len(imageUrls)))
             try:
                 filename, new = self.download_file(url, wnid_urlimages_dir)
             except Exception, error:
                 new = False
-                print('Fail to download : ' + url +' '+ str(error))
+                sys.stdout.write('Fail : ' + url +' '+ str(error) + "\n")
             if new: gets+=1
             if gets >= num_images:break
+        sys.stdout.flush()
         return gets
 
     def downloadOriginalImages(self, wnid, username, accesskey):

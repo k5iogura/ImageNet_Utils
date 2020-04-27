@@ -5,7 +5,7 @@ import os
 import _init_paths
 import imagedownloader
 import pref_utils
-import threading
+import threading, logging
 from pdb import set_trace
 
 safedomains = ['.gov/', '.jp/', '.edu/', '.ie/', '.us/', '.ch/', '.flickr.com/']
@@ -37,6 +37,7 @@ if __name__ == '__main__':
     if args.wnid is None:
         print('No wnid')
         sys.exit()
+    logging.basicConfig(level=logging.DEBUG,format='%(message)s')
 
     downloader = imagedownloader.ImageNetDownloader()
     username = None
@@ -46,26 +47,39 @@ if __name__ == '__main__':
         username = userInfo[0]
         accessKey = userInfo[1]
 
+    def kernel_getWnid(iid,imgAcat,ret):
+        ilist = downloader.getImageURLsOfWnid(iid)
+        ilist = filterSaveDomainOnly(ilist)
+        msg = "{:15s} {:6d} urls".format(iid,len(ilist))
+        if len(ilist)>=imgAcat:msg = msg + " *"
+        logging.debug(msg)
+        ret.append([iid,len(ilist)])
+
+    def thread_getWnid(wnid,imgAcat):
+        max_ths = 100
+        ret = []
+        ths = []
+        for iid in wnid:
+            if len(ths) < max_ths:
+                th = threading.Thread(target=kernel_getWnid,args=(iid,imgAcat,ret,))
+                th.start()
+                ths.append(th)
+                if len(ths) == max_ths:
+                    for th in ths:
+                        th.join()
+                    ths = []
+        for th in ths:
+            th.join()
+        return ret
+
     if args.cat:
-        needcat=1000
         imgAcat= 900
         filename = 'imagenet.labels.safedomain'+str(imgAcat)+'.list'
         with open(filename,"w") as flickr:
-            for iid in args.wnid:
-                try:
-                    ilist = downloader.getImageURLsOfWnid(iid)
-                except:
-                    print("retry getting url list")
-                    continue
-                ilist = filterSaveDomainOnly(ilist)
-                sys.stdout.write("{:10s}\t{:6d} images".format(iid,len(ilist)))
-                if len(ilist)>=imgAcat:
-                    sys.stdout.write("\t* {}".format(needcat))
+            for ret in thread_getWnid(args.wnid, imgAcat):
+                iid, nurls = ret
+                if nurls>=imgAcat:
                     flickr.write(iid+"\n")
-                    flickr.flush()
-                    needcat-=1
-                sys.stdout.write("\n")
-                if needcat<=0:break
         sys.exit(0)
 
     max_threads = args.max_threads
@@ -82,6 +96,8 @@ if __name__ == '__main__':
                     for th in threads:
                         th.join()
                     threads = []
+        for th in threads:
+            th.join()
 
     if args.downloadBoundingBox is True:
         for id in args.wnid:
