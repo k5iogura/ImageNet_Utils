@@ -125,9 +125,11 @@ class ImageNetDownloader:
         return os.path.abspath(iname)
 
     def downloadImagesByURLs(self, wnid, imageUrls, num_images):
+        sys.stdout.flush()
         print("*"*30)
         print("**  START {}".format(wnid))
         print("*"*30)
+        sys.stdout.flush()
         # save to the dir e.g: n005555_urlimages/
         wnid_urlimages_dir = os.path.join(self.mkWnidDir(), str(wnid))
         # wnid_urlimages_dir = os.path.join(self.mkWnidDir(wnid), str(wnid) + '_urlimages')

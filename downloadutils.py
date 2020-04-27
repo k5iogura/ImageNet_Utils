@@ -5,6 +5,7 @@ import os
 import _init_paths
 import imagedownloader
 import pref_utils
+import threading
 from pdb import set_trace
 
 if __name__ == '__main__':
@@ -13,6 +14,7 @@ if __name__ == '__main__':
     p.add_argument('--wnid_list', type=str, default=None)
     p.add_argument('--cat',action="store_true",default=0)
     p.add_argument('-n','--num_images', type=int, default=100)
+    p.add_argument('-th','--max_threads', type=int, default=10)
     p.add_argument('--downloadImages', help='Should download images', action='store_true', default=False)
     p.add_argument('--downloadOriginalImages', help='Should download original images', action='store_true', default=False)
     p.add_argument('--downloadBoundingBox', help='Should download bouding box annotation files', action='store_true', default=False)
@@ -58,13 +60,19 @@ if __name__ == '__main__':
                 if needcat<=0:break
         sys.exit(0)
 
+    max_threads = args.max_threads
+    threads = []
     if args.downloadImages is True:
         for iid in args.wnid:
-            ilist = downloader.getImageURLsOfWnid(iid)
-            gets = downloader.downloadImagesByURLs(iid, ilist, args.num_images)
-            print("-"*30)
-            print("- completed {} {} / {}".format(iid, gets, len(ilist)))
-            print("-"*30)
+            if len(threads) < max_threads:
+                ilist = downloader.getImageURLsOfWnid(iid)
+                th = threading.Thread(target=downloader.downloadImagesByURLs, args=(iid, ilist, args.num_images))
+                th.start()
+                threads.append(th)
+                if len(threads) >= max_threads:
+                    for th in threads:
+                        th.join()
+                    threads = []
 
     if args.downloadBoundingBox is True:
         for id in args.wnid:
