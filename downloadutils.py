@@ -8,6 +8,14 @@ import pref_utils
 import threading
 from pdb import set_trace
 
+safedomains = ['.gov/', '.jp/', '.edu/', '.ie/', '.us/', '.ch/', '.flickr.com/']
+def filterSaveDomainOnly(ilist):
+    selected = []
+    for url in ilist:
+        for safedomain in safedomains:
+            if safedomain in url: selected.append(url)
+    return selected
+
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description='Help the user to download, crop, and handle images from ImageNet')
     p.add_argument('--wnid', nargs='+', help='ImageNet Wnid. E.g. : n02710324')
@@ -41,7 +49,7 @@ if __name__ == '__main__':
     if args.cat:
         needcat=1000
         imgAcat= 900
-        filename = 'imagenet.labels.flickr'+str(imgAcat)+'.list'
+        filename = 'imagenet.labels.safedomain'+str(imgAcat)+'.list'
         with open(filename,"w") as flickr:
             for iid in args.wnid:
                 try:
@@ -49,7 +57,7 @@ if __name__ == '__main__':
                 except:
                     print("retry getting url list")
                     continue
-                ilist = [ url for url in ilist if '.flickr.com' in url]
+                ilist = filterSaveDomainOnly(ilist)
                 sys.stdout.write("{:10s}\t{:6d} images".format(iid,len(ilist)))
                 if len(ilist)>=imgAcat:
                     sys.stdout.write("\t* {}".format(needcat))
@@ -66,6 +74,7 @@ if __name__ == '__main__':
         for iid in args.wnid:
             if len(threads) < max_threads:
                 ilist = downloader.getImageURLsOfWnid(iid)
+                ilist = filterSaveDomainOnly(ilist)
                 th = threading.Thread(target=downloader.downloadImagesByURLs, args=(iid, ilist, args.num_images))
                 th.start()
                 threads.append(th)
