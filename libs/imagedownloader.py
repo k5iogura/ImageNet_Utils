@@ -68,7 +68,7 @@ class ImageNetDownloader:
                 if file_size:
                     status += "   [{0:6.2f}%]".format(file_size_dl * 100 / file_size)
                 status += chr(13)
-            if file_size_dl >= block_sz:
+            if file_size_dl >= 3*block_sz:
                 sys.stdout.write("Downloading: {}".format(url))
                 new = True
             break
@@ -151,6 +151,7 @@ class ImageNetDownloader:
             try:
                 filename, new = self.download_file(url, wnid_urlimages_dir)
             except Exception, error:
+                new = False
                 print('Fail to download : ' + url +' '+ str(error))
             if new: gets+=1
             if gets >= num_images:break
