@@ -140,14 +140,13 @@ class ImageNetDownloader:
         ready_fileN = len( [ i for i in os.listdir(wnid_urlimages_dir) ] )
         if ready_fileN >= num_images: return ready_fileN
 
-        imageUrlsFlickr = [ url for url in imageUrls if '.flickr.com' in url ]
         gets = 0
         new  = False
-        for urlNo, url in enumerate(imageUrlsFlickr):
+        for urlNo, url in enumerate(imageUrls):
             if urlNo+1 <= ready_fileN:
                 gets += 1
                 continue
-            sys.stdout.write("{} {}/{}/{} ".format(wnid, gets, urlNo, len(imageUrlsFlickr)))
+            sys.stdout.write("{} {}/{}/{} ".format(wnid, gets, urlNo, len(imageUrls)))
             try:
                 filename, new = self.download_file(url, wnid_urlimages_dir)
             except Exception, error:
