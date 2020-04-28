@@ -19,10 +19,10 @@ After run see imagenet.labels.flickr900.list which include categories having ove
 `$ ./downloadutils.py -cat --wnid_list hoge.list`  
 
 ### Usage - Download images:
-Get the urls of wnid and download all of them. E.g., download [Dog images from ImageNet](http://www.image-net.org/synset?wnid=n02084071) and save images to ./n02084071/url_images/*.jpg
+Get the urls of wnid and download all of them. E.g., download [Dog images from ImageNet](http://www.image-net.org/synset?wnid=n02084071) and save images to .inet-images/n02084071/*.jpg
 
-`$ ./downloadutils.py --downloadImages --wnid n02084071`  
-`$ ./downloadutils.py --downloadImages --wnid_list imagenet.labels.flickr900.list`  
+`$ ./inet4voc.sh`
+`$ ./downloadutils.py --downloadImages --wnid_list imagenet.labels.safedomain900.list -n 1000 -th 50`
 
 Download all original images. E.g., download the original images about [person](http://www.image-net.org/synset?wnid=n00007846) and save to ./n00007846/n00007846_original_images/*.JPEG
 
