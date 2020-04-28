@@ -99,11 +99,11 @@ if __name__ == '__main__':
             if len(threads) < max_threads:
                 ilist = downloader.getImageURLsOfWnid(iid)
                 ilist = filterSaveDomainOnly(ilist)
-                th = threading.Thread(name=iid, target=downloader.downloadImagesByURLs, args=(iid, ilist, args.num_images))
+                th = threading.Thread(target=downloader.downloadImagesByURLs, args=(iid, ilist, args.num_images))
                 th.start()
                 threads.append(th)
                 if len(threads) >= max_threads:
-                    for tn,th in enumerate(threads):
+                    for th in threads:
                         th.join()
                         with open(ignores_txt,"a") as ignores:ignores.write(th.name+'\n')
                     threads = []
