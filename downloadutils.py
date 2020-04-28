@@ -56,7 +56,7 @@ if __name__ == '__main__':
         ret.append([iid,len(ilist)])
 
     def thread_getWnid(wnid,imgAcat):
-        max_ths = 100
+        max_ths = args.max_threads
         ret = []
         ths = []
         for iid in wnid:
