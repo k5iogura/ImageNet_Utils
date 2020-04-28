@@ -6,6 +6,7 @@ import _init_paths
 import imagedownloader
 import pref_utils
 import threading, logging
+from copy import copy
 from pdb import set_trace
 
 safedomains = ['.gov/', '.jp/', '.edu/', '.ie/', '.us/', '.ch/', '.flickr.com/']
@@ -102,7 +103,7 @@ if __name__ == '__main__':
                 th.start()
                 threads.append(th)
                 if len(threads) >= max_threads:
-                    for th in threads:
+                    for tn,th in enumerate(threads):
                         th.join()
                         with open(ignores_txt,"a") as ignores:ignores.write(th.name+'\n')
                     threads = []
