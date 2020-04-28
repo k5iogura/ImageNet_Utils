@@ -82,22 +82,33 @@ if __name__ == '__main__':
                     flickr.write(iid+"\n")
         sys.exit(0)
 
+    done_labels = []
+    ignores_txt = 'ignore.list'
+    if os.path.exists(ignores_txt):
+        with open(ignores_txt) as f:
+            done_labels = [ l.strip() for l in f]
+    else:
+        with open(ignores_txt,"w") as ignores:pass
+
     max_threads = args.max_threads
     threads = []
     if args.downloadImages is True:
         for iid in args.wnid:
+            if iid in done_labels:continue
             if len(threads) < max_threads:
                 ilist = downloader.getImageURLsOfWnid(iid)
                 ilist = filterSaveDomainOnly(ilist)
-                th = threading.Thread(target=downloader.downloadImagesByURLs, args=(iid, ilist, args.num_images))
+                th = threading.Thread(name=iid, target=downloader.downloadImagesByURLs, args=(iid, ilist, args.num_images))
                 th.start()
                 threads.append(th)
                 if len(threads) >= max_threads:
                     for th in threads:
                         th.join()
+                        with open(ignores_txt,"a") as ignores:ignores.write(th.name+'\n')
                     threads = []
         for th in threads:
             th.join()
+            with open(ignores_txt,"a") as ignores:ignores.write(th.name+'\n')
 
     if args.downloadBoundingBox is True:
         for id in args.wnid:
