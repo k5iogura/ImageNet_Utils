@@ -44,4 +44,4 @@ wc inet-voc.labels.list inet-voc.shortnames.list
 echo use 2 files for classifier inet-voc.labels.list inet-voc.shortnames.list
 
 echo Run below to download images from IMAGENET related VOC.NAMES
-echo ./downloadutils.py --downloadImages --wnid_list imagenet.labels.safedomain900.list -n 1000 -th 50
+echo ./downloadutils.py --downloadImages --wnid_list inet-voc.labels.list -n 1000 -th 50
