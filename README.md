@@ -22,8 +22,8 @@ After run see imagenet.labels.flickr900.list which include categories having ove
 Get the urls of wnid and download all of them. E.g., download [Dog images from ImageNet](http://www.image-net.org/synset?wnid=n02084071) and save images to .inet-images/n02084071/*.jpg
 
 `$ ./inet4voc.sh`  
-`$ ./downloadutils.py --downloadImages --wnid_list imagenet.labels.safedomain900.list -n 1000 -th 50`
-`$ make_trainval.sh`
+`$ ./downloadutils.py --downloadImages --wnid_list imagenet.labels.safedomain900.list -n 1000 -th 50`  
+`$ make_trainval.sh`  
 
 you can get train and valid list for VOC dataset.  
 
