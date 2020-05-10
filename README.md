@@ -23,7 +23,7 @@ Get the urls of wnid and download all of them. E.g., download [Dog images from I
 
 `$ ./inet4voc.sh`  
 `$ ./downloadutils.py --downloadImages --wnid_list imagenet.labels.safedomain900.list -n 1000 -th 50`  
-`$ make_trainval.sh`  
+`$ ./make_trainval.sh`  
 
 you can get train and valid list for VOC dataset.  
 
