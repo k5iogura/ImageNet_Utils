@@ -19,11 +19,15 @@ After run see imagenet.labels.flickr900.list which include categories having ove
 `$ ./downloadutils.py -cat --wnid_list hoge.list`  
 
 ### Usage - Download images:
-Get the urls of wnid and download all of them. E.g., download [Dog images from ImageNet](http://www.image-net.org/synset?wnid=n02084071) and save images to .inet-images/n02084071/*.jpg
 
+generate list for images regard to VOC 20class,  
 `$ ./inet4voc.sh`  
 `$ ./downloadutils.py --downloadImages --wnid_list imagenet.labels.safedomain900.list -n 1000 -th 50`  
 `$ ./make_trainval.sh`  
+can get inet-voc.labels.list, train.txt, valid.txt for classification task.  
+can train via train.txt to make pre-trained weights for object detection task.  
+
+Get the urls of wnid and download all of them. E.g., download [Dog images from ImageNet](http://www.image-net.org/synset?wnid=n02084071) and save images to .inet-images/n02084071/*.jpg
 
 you can get train and valid list for VOC dataset.  
 
