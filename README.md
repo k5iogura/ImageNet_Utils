@@ -23,6 +23,9 @@ Get the urls of wnid and download all of them. E.g., download [Dog images from I
 
 `$ ./inet4voc.sh`  
 `$ ./downloadutils.py --downloadImages --wnid_list imagenet.labels.safedomain900.list -n 1000 -th 50`
+`$ make_trainval.sh`
+
+you can get train and valid list for VOC dataset.  
 
 Download all original images. E.g., download the original images about [person](http://www.image-net.org/synset?wnid=n00007846) and save to ./n00007846/n00007846_original_images/*.JPEG
 
