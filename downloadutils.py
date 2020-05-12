@@ -10,7 +10,7 @@ from copy import copy
 from pdb import set_trace
 
 safedomains = ['.gov/', '.jp/', '.edu/', '.ie/', '.us/', '.ch/', '.flickr.com/']
-def filterSaveDomainOnly(ilist):
+def filterSafeDomainOnly(ilist):
     selected = []
     for url in ilist:
         for safedomain in safedomains:
@@ -27,7 +27,7 @@ if __name__ == '__main__':
     p.add_argument('--downloadImages', help='Should download images', action='store_true', default=False)
     p.add_argument('--downloadOriginalImages', help='Should download original images', action='store_true', default=False)
     p.add_argument('--downloadBoundingBox', help='Should download bouding box annotation files', action='store_true', default=False)
-    # p.add_argument('--jobs', '-j', type=int, default=1, help='Number of parallel threads to download')
+    p.add_argument('-a', '--urls_all', action='store_true')
     # p.add_argument('--timeout', '-t', type=int, default=10, help='Timeout per image in seconds')
     # p.add_argument('--retry', '-r', type=int, default=10, help='Max count of retry for each image')
     p.add_argument('--verbose', '-v', action='store_true', help='Enable verbose log')
@@ -50,7 +50,7 @@ if __name__ == '__main__':
 
     def kernel_getWnid(iid,imgAcat,ret):
         ilist = downloader.getImageURLsOfWnid(iid)
-        ilist = filterSaveDomainOnly(ilist)
+        ilist = filterSafeDomainOnly(ilist)
         msg = "{:15s} {:6d} urls".format(iid,len(ilist))
         if len(ilist)>=imgAcat:msg = msg + " *"
         logging.debug(msg)
@@ -98,7 +98,7 @@ if __name__ == '__main__':
             if iid in done_labels:continue
             if len(threads) < max_threads:
                 ilist = downloader.getImageURLsOfWnid(iid)
-                ilist = filterSaveDomainOnly(ilist)
+                if not args.urls_all: ilist = filterSaveDomainOnly(ilist)
                 th = threading.Thread(target=downloader.downloadImagesByURLs, args=(iid, ilist, args.num_images))
                 th.start()
                 threads.append(th)

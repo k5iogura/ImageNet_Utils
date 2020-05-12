@@ -4,6 +4,13 @@ Utils to help download images, crop bounding box, GUI tool to annotate image in 
 **Dwonload Flickr images which includes .flickr.com as url only**  
 url list provided by ImageNet.org includes fake url such as north korea redirections.  
 flickr url is safety :0  
+If you take risk about fake url you can use `--urls_all` option with downloadutils.py.  
+
+**Timeout for socket module**  
+Improves download function with url timeout for socket module to avoid hung-up.  
+
+**Ignore small size or hurge size images**  
+Ignores images which are no longer available on its website.  
 
 Grap the source
 

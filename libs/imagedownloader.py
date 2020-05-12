@@ -4,6 +4,7 @@ import time
 import tarfile
 from pdb import set_trace
 
+import socket
 if sys.version_info >= (3,):
     import urllib.request as urllib2
     import urllib.parse as urlparse
@@ -17,6 +18,7 @@ class ImageNetDownloader:
         self.host = 'http://www.image-net.org'
 
     def download_file(self, url, desc=None, renamed_file=None):
+        socket.setdefaulttimeout(30)
         new = False
         u = urllib2.urlopen(url)
 
@@ -59,7 +61,7 @@ class ImageNetDownloader:
                 buffer = u.read(block_sz)
                 if not buffer:
                     break
-                if file_size_dl == 0 and len(buffer) < block_sz:
+                if file_size_dl == 0 and len(buffer) < block_sz or file_size_dl >= 1000*block_sz:
                     break
                 file_size_dl += len(buffer)
                 f.write(buffer)
@@ -68,11 +70,11 @@ class ImageNetDownloader:
                 if file_size:
                     status += "   [{0:6.2f}%]".format(file_size_dl * 100 / file_size)
                 status += chr(13)
-            if file_size_dl >= 3*block_sz:
+            if file_size_dl >= 3*block_sz and file_size_dl < 1000*block_sz:
                 sys.stdout.write("Downloading: {}".format(url))
                 new = True
             break
-        if os.path.exists(filename) and file_size_dl < 3*block_sz:
+        if file_size_dl >= 1000*block_sz or os.path.exists(filename) and file_size_dl < 3*block_sz:
             os.remove(filename)
             filename = None
         else:
