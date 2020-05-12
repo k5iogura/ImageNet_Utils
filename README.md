@@ -1,7 +1,8 @@
 # ImageNet-Utils
 Utils to help download images, crop bounding box, GUI tool to annotate image in XML file etc.  
+### Include improvements for fake urls, small size files, url timeout and multithreading etc  
 
-**Dwonload Flickr images which includes .flickr.com as url only**  
+**Download Flickr images which includes .flickr.com as url only**  
 url list provided by ImageNet.org includes fake url such as north korea redirections.  
 flickr url is safety :0  
 If you take risk about fake url you can use `--urls_all` option with downloadutils.py.  
