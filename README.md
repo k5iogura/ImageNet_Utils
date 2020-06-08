@@ -1,9 +1,17 @@
 # ImageNet-Utils
 Utils to help download images, crop bounding box, GUI tool to annotate image in XML file etc.  
+### Include improvements for fake urls, small size files, url timeout and multithreading etc  
 
-**Dwonload Flickr images which includes .flickr.com as url only**  
+**Download Flickr images which includes .flickr.com as url only**  
 url list provided by ImageNet.org includes fake url such as north korea redirections.  
 flickr url is safety :0  
+If you take risk about fake url you can use `--urls_all` option with downloadutils.py.  
+
+**Timeout for socket module**  
+Improves download function with url timeout for socket module to avoid hung-up.  
+
+**Ignore small size or hurge size images**  
+Ignores images which are no longer available on its website.  
 
 Grap the source
 
@@ -19,10 +27,17 @@ After run see imagenet.labels.flickr900.list which include categories having ove
 `$ ./downloadutils.py -cat --wnid_list hoge.list`  
 
 ### Usage - Download images:
+
+generate list for images regard to VOC 20class,  
+`$ ./inet4voc.sh`  
+`$ ./downloadutils.py --downloadImages --wnid_list imagenet.labels.safedomain900.list -n 1000 -th 50`  
+`$ ./make_trainval.sh`  
+can get inet-voc.labels.list, train.txt, valid.txt for classification task.  
+can train via train.txt to make pre-trained weights for object detection task.  
+
 Get the urls of wnid and download all of them. E.g., download [Dog images from ImageNet](http://www.image-net.org/synset?wnid=n02084071) and save images to .inet-images/n02084071/*.jpg
 
-`$ ./inet4voc.sh`  
-`$ ./downloadutils.py --downloadImages --wnid_list imagenet.labels.safedomain900.list -n 1000 -th 50`
+you can get train and valid list for VOC dataset.  
 
 Download all original images. E.g., download the original images about [person](http://www.image-net.org/synset?wnid=n00007846) and save to ./n00007846/n00007846_original_images/*.JPEG
 
