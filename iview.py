@@ -9,6 +9,7 @@ def showf(f,wname='view'):
     cv2.imshow(wname,img)
     while True:
         key=cv2.waitKey(10)
+        if key==ord('q'):sys.exit(-1)
         if key!=-1: break
 
 def dirfiles(d):
