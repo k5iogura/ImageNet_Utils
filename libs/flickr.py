@@ -21,7 +21,9 @@ def getUrls(keyword, num_of_photos, per_page=100, verbose=False):
     num_pages = int(ceil(num_of_photos/PerPage))
     for i in range(1,num_pages+1):
         result = flickr.photos.search(
-            text = keyword,
+            #text = keyword,
+            tags=keyword,
+            tag_mode='all', 
             page = i,
             per_page = PerPage,
             media = 'photos',
