@@ -74,7 +74,7 @@ if __name__ == '__main__':
         return ret
 
     if args.cat:
-        imgAcat= 900
+        imgAcat= args.num_images
         filename = 'imagenet.labels.safedomain'+str(imgAcat)+'.list'
         with open(filename,"w") as flickr:
             for ret in thread_getWnid(args.wnid, imgAcat):
@@ -98,7 +98,7 @@ if __name__ == '__main__':
             if iid in done_labels:continue
             if len(threads) < max_threads:
                 ilist = downloader.getImageURLsOfWnid(iid)
-                if not args.urls_all: ilist = filterSaveDomainOnly(ilist)
+                if not args.urls_all: ilist = filterSafeDomainOnly(ilist)
                 th = threading.Thread(target=downloader.downloadImagesByURLs, args=(iid, ilist, args.num_images))
                 th.start()
                 threads.append(th)
