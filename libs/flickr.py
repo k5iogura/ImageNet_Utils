@@ -44,6 +44,7 @@ if __name__=='__main__':
     args.add_argument('keyword', type=str)
     args.add_argument('-n', '--num_of_images', type=int, default=100)
     args.add_argument('-o', '--output', type=str, default=None)
+    args.add_argument('-q', '--quiet', action='store_true')
     args = args.parse_args()
 
     num_of_photos = args.num_of_images
@@ -52,7 +53,8 @@ if __name__=='__main__':
 
     # Output log file
     log_name = os.path.splitext(os.path.basename(sys.argv[0]))[0]+'.log'
-    sys.stderr.write("* write out log into \"{}\"".format(log_name)+'\n')
+    if not args.quiet:
+        sys.stderr.write("* write out log into \"{}\"".format(log_name)+'\n')
     with open(log_name,'w') as f:
         for url in urls:
             f.write("{} {} {} {} {}\n".format(url['id'], url['title'], url['w'], url['h'], url['url_q']))
