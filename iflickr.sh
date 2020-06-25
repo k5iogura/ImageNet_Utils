@@ -12,25 +12,37 @@ while read ll;do
 
     num=$(echo $ll  | awk '{print $2;}')
     word=$(echo $ll | sed 's/^n[0-9 ]*//')
-    short=$(echo $word | awk -F ',' '{print $1;}')
 
-    echo -n $iid $num $word "->"
+    echo -n $iid "request:" $num "images" "tags:" $word "->"
     python3 ${ppp}/libs/flickr.py --quiet -n $num "$word" -o ${iid}.url
     urls=$(cat ${iid}.url | wc -l)
 
     if [ $urls -eq 0 ];then
         rm -f ${iid}.url
     fi
-#    if [ $urls -le $(expr $num / 2) ];then
-#        urls2=$urls
-#        python3 ${ppp}/libs/flickr.py --quiet -n $num "$short" -o ${iid}.url
-#        urls=$(cat ${iid}.url | wc -l)
-#        echo $urls2 "->" $urls $iid $short
-#    fi
-    echo $urls $iid $short
+
+    tags=$(echo $word | awk -F ',' '{printf NF;}')
+    for w in $(seq $tags -1 2);do
+        if [ $urls -le $(expr $num / 2) ];then
+            short=$(echo $word | awk -v tags=$w -F ',' '{for(i=1;i<=tags-1;i++){printf $i ",";}}')
+            #echo ""
+            #echo $word ":" $short ":" $w
+            urls2=$urls
+            python3 ${ppp}/libs/flickr.py --quiet -n $num "$short" -o ${iid}.url
+            urls=$(cat ${iid}.url | wc -l)
+            echo $urls2 "->" $urls $short
+        else
+            break
+        fi
+    done
+
 
     if [ $urls -gt 0 ];then
-        wget -q -b -i ${iid}.url
+    #    echo wget -q -b -i ${iid}.url
+        echo $iid $urls "images" "tags:" $word
+    else
+        echo $urls $word "->" $short
+        exit
     fi
 
     popd >& /dev/null
