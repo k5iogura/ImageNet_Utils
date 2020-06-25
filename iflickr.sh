@@ -38,7 +38,7 @@ while read ll;do
 
 
     if [ $urls -gt 0 ];then
-    #    echo wget -q -b -i ${iid}.url
+        echo wget -q -b -i ${iid}.url
         echo $iid $urls "images" "tags:" $word
     else
         echo $urls $word "->" $short
