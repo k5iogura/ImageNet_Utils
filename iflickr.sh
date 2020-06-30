@@ -2,7 +2,7 @@
 
 for i in $(find inet_images/* -type d);do fn=$(find $i -type f | wc -l); i=$(basename $i); num=$(expr 1000 - $fn);if [ $num -ne 0 ];then echo -n $i $num " ";grep $i words.inet.txt|sed -e 's/n[0-9]*\t//';fi;done > iflickr.list
 
-idir="inet_flikr"
+idir="inet_flickr"
 ppp=$(pwd)
 while read ll;do
 
