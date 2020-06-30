@@ -29,20 +29,24 @@ while read ll;do
             #echo $word ":" $short ":" $w
             urls2=$urls
             python3 ${ppp}/libs/flickr.py --quiet -n $num "$short" -o ${iid}.url
+            if [ ! $? -eq 0 ];then
+                echo $iid $w "error"
+                exit
+            fi
             urls=$(cat ${iid}.url | wc -l)
             echo $urls2 "->" $urls $short
         else
             break
         fi
+        sleep 3
     done
 
 
     if [ $urls -gt 0 ];then
-        wget -q -b -i ${iid}.url
         echo $iid $urls "images" "tags:" $word
+        wget -q -b -i ${iid}.url
     else
         echo $urls $word "->" $short
-        exit
     fi
 
     popd >& /dev/null
