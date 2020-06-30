@@ -2,6 +2,7 @@ from flickrapi import FlickrAPI
 from urllib.request import urlretrieve
 from math import ceil
 import os, time, sys, argparse
+import traceback,time
 
 def getUrls(keyword, num_of_photos, per_page=100, verbose=False):
 
@@ -45,11 +46,23 @@ if __name__=='__main__':
     args.add_argument('-n', '--num_of_images', type=int, default=100)
     args.add_argument('-o', '--output', type=str, default=None)
     args.add_argument('-q', '--quiet', action='store_true')
+    args.add_argument('-r', '--retry', type=int, default=3)
     args = args.parse_args()
 
+    ret_code = 0
     num_of_photos = args.num_of_images
     keyword = args.keyword
-    urls = getUrls(keyword, num_of_photos)
+    for r in range(args.retry):
+        try:
+            urls = getUrls(keyword, num_of_photos)
+            break
+        except:
+            traceback.print_exc()
+            print("retry : {} {}, sleep 5sec ...".format(r,keyword))
+            time.sleep(5)
+            if r==args.retry-1:
+                print("*** {} URLs can't be downloaded.".format(keyword))
+                ret_code = 11
 
     # Output log file
     log_name = os.path.splitext(os.path.basename(sys.argv[0]))[0]+'.log'
@@ -67,7 +80,7 @@ if __name__=='__main__':
     else:
         for url in urls: print(url['url_q'])
 
-    sys.exit(0)
+    sys.exit(ret_code)
 
 #for url in urls:
 #    print(url[2])
