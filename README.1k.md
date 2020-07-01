@@ -18,7 +18,9 @@ So, use words.inet.txt instead of words.txt.
 To make imagenet 1K wnid list, type below,  
 ```
  $ ./grep-i.py -i imagenet1k.shortnames.list words.inet.txt -o id > imagenet1k.wnid.list
-<details>  ```
+```
+
+<details>
 <summary>imagenet1k.wnid.list example</summary>  
 <p>  
 ```
