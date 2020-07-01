@@ -87,6 +87,9 @@ n02442845
  $ ./make_trainval.sh
 ```
 
+see and check train.txt valid.txt which include URLs of target images to use training.  
+its are sorted and splited to 5k validation images and about 1M training images.  
+
 ## Results  
 see and check inet_images/ and inet_flickr/ directories.  
 
@@ -94,5 +97,6 @@ see and check inet_images/ and inet_flickr/ directories.
  $ find inet_images inet_flickr -iname \*.jpg | wc
  981077
 ```
+number of images is different because flickr or imagenet url link down so,on.  
+1K categories have about 1M images.  
 
-see and check train.txt and valid.txt  
