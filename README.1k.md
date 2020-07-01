@@ -13,11 +13,22 @@
 **Notice**  
 imagenet dataset has duplicated definitions of 'crane'.  
 Split 'crane' category to 'crane, Wading birds' and 'crane, Lifing device' in imagenet1k.shortnames.list and words.inet.txt.  
+So, use words.inet.txt instead of words.txt.  
 
 To make imagenet 1K wnid list, type below,  
 ```
  $ ./grep-i.py -i imagenet1k.shortnames.list words.inet.txt -o id > imagenet1k.wnid.list
+<details>  ```
+<summary>imagenet1k.wnid.list example</summary>  
+<p>  
 ```
+n02119789
+n02100735
+n02096294
+...
+```
+</p>
+</details>  
 
 ## Download images by **ImageNet URLs**  
 ```
