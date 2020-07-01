@@ -87,7 +87,7 @@ n02442845
  $ ./make_trainval.sh
 ```
 
-see and check train.txt valid.txt which include URLs of target images to use training.  
+see and check train.txt valid.txt which include file paths of target images to use training.  
 its are sorted and splited to 5k validation images and about 1M training images.  
 
 ## Results  
