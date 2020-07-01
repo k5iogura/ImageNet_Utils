@@ -23,12 +23,10 @@ To make imagenet 1K wnid list, type below,
 <details>
 <summary>imagenet1k.wnid.list example</summary>  
 <p>  
-```
 n02119789
 n02100735
 n02096294
 ...
-```
 </p>
 </details>  
 
