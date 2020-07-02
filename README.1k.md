@@ -97,6 +97,26 @@ see and check inet_images/ and inet_flickr/ directories.
  $ find inet_images inet_flickr -iname \*.jpg | wc
  981077
 ```
-number of images is different because flickr or imagenet url link down so,on.  
+your number of images may be different because flickr or imagenet url link down so,on.  
 1K categories have about 1M images.  
 
+or  
+```
+ $ ./summary.py
+```
+
+<details><summary>outputs example below</summary><p>  
+
+```
+    ...
+    88 n02089973 English foxhound
+    83 n03485407 hand-held computer, hand-held microcomputer
+    70 n02112706 Brabancon griffon
+    63 n04579145 whiskey jug
+n04579145        63 images
+n04209133      1099 images
+999 classes images in ['inet_images', 'inet_flickr']
+982.986 images/class
+```
+
+</p></details>  
