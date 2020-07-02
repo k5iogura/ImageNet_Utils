@@ -125,10 +125,15 @@ or
     83 n03485407 hand-held computer, hand-held microcomputer
     70 n02112706 Brabancon griffon
     63 n04579145 whiskey jug
+n04399382         0 images warning!
 n04579145        63 images
 n04209133      1099 images
 999 classes images in ['inet_images', 'inet_flickr']
 982.986 images/class
+
+here n04399382 directory is empty, it denote that there is no images for category n04399382 to train classifier. please be carefly.  
+ $ grep n04399382 words.inet.txt
+n04399382       teddy, teddy bear
 ```
 
 </p></details>  
