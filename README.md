@@ -1,4 +1,4 @@
-# For imagenet 1k images
+# For imagenet 1k classes images
 
 ## Providing files  
 
