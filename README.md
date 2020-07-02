@@ -59,10 +59,17 @@ n02096294
 </details>  
 
 ## Download images by **ImageNet URLs**  
+first, make wnid list.  
 ```
  $ ./downloadutils.py --cat -n 1 --wnid_list imagenet1k.wnid.list -th 30
+```
+
+and download 1000 images/class from ImageNet URLs with -n 1000. if need more images/class then change -n option.  
+```
  $ python ./downloadutils.py --downloadImages -th 30 --wnid_list imagenet.labels.safedomain1.list -n 1000
 ```
+
+30 threads download images.  
 
 <details>  
 <summary>imagenet.labels.safedomain1.list</summary>  
@@ -78,17 +85,22 @@ n02442845
 </details>  
 
 ## Download images by **flickr URLs**  
+ImageNet URLs is not enough URLs per class.  
+below script can donwload (1000 - ImageNet URLs) images via flickr API.  
+1000 is fixed value in script, change it if need.  
+
 ```
  $ ./iflickr.sh
 ```
 
 ## Make train.txt and valid.txt  
+find JPG images from ./inet_images or ./inet_flickr directories and make path list as train.txt and valid.txt.  
 ```
  $ ./make_trainval.sh
 ```
 
 see and check train.txt valid.txt which include file paths of target images to use training.  
-its are sorted and splited to 5k validation images and about 1M training images.  
+its are randm sorted and splited to 5k validation images and about 1M training images.  
 
 ## Results  
 see and check inet_images/ and inet_flickr/ directories.  
