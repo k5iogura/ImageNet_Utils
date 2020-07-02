@@ -41,9 +41,11 @@ if __name__=='__main__':
 
     # make images data
     img2info_tmp = {}
+    not_found_dir = []
     for iid in wnid:
         if all( [ not os.path.exists( os.path.join( dirx, iid ) ) for dirx in args.dirlist ] ):
             print("{} class has no images and directory but be in {} file".format(iid,args.wnid_list), file=sys.stderr)
+            not_found_dir.append( iid )
         for dirx in args.dirlist:
             img_dir = os.path.join( dirx, iid )
             if os.path.exists( img_dir ):
@@ -80,6 +82,7 @@ if __name__=='__main__':
             print("end of top {}".format(args.top))
             break
 
+    for d in not_found_dir: print("{:12s} {:6d} images warning!".format(d,0), file=sys.stderr)
     print("{:12s} {:6d} images".format(img2info[0]['id'] ,img2info[0]['images']), file=sys.stderr)
     print("{:12s} {:6d} images".format(img2info[-1]['id'],img2info[-1]['images']), file=sys.stderr)
     print("{} classes images in {}".format(len(img2info),args.dirlist), file=sys.stderr)
