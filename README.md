@@ -1,4 +1,5 @@
-# For imagenet 1k classes images
+# For ImageNet 1k classes images
+To classify 1000 ImageNet categories images downloading utilities.  
 
 ## Providing files  
 
@@ -7,8 +8,8 @@
   but 'crane' words represents twice on web page, so modify it.  
 
 - word.inet.txt  
-  from pjreddie web site via wget.  
-  but 'crane' words represents twice on web page, so modify it.  
+  original file 'words.txt' from pjreddie web site via wget.  
+  but 'crane' words is represented twice on web page, so modify it.  
 
 **Notice**  
 imagenet dataset has duplicated definitions of 'crane'.  
